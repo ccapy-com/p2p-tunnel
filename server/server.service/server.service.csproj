@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+	</PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<TieredPGO>true</TieredPGO>
+		<PublishAot>false</PublishAot>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<ServerGarbageCollection>false</ServerGarbageCollection>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DefineConstants>TRACE;RELEASE</DefineConstants>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup>
+	  <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	  <DockerfileContext>..\..</DockerfileContext>
+	  <ApplicationIcon>logo.ico</ApplicationIcon>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Content Include="logo.ico" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\common\common.libs\common.libs.csproj" />
+	  <ProjectReference Include="..\..\common\common.server\common.server.csproj" />
+	  <ProjectReference Include="..\plugins\server.service.forward\server.service.forward.csproj" />
+	  <ProjectReference Include="..\plugins\server.service.users\server.service.users.csproj" />
+	  <ProjectReference Include="..\plugins\server.service.vea\server.service.vea.csproj" />
+	  <ProjectReference Include="..\server\server.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="public\" />
+	</ItemGroup>
+
+</Project>
